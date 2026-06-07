@@ -1,0 +1,632 @@
+:root{
+
+    --verde:#198754;
+    --verde-hover:#157347;
+
+    --amarelo:#ffc107;
+
+    --fundo:#f5f7fa;
+
+    --texto:#212529;
+
+    --card:#ffffff;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:var(--fundo);
+
+    color:var(--texto);
+
+    transition:.3s;
+
+    min-height:100vh;
+}
+
+.titulo-principal{
+
+    text-align:center;
+
+    font-size:2.5rem;
+
+    font-weight:700;
+
+    margin-bottom:30px;
+}
+
+.titulo-principal i{
+
+    color:var(--verde);
+}
+
+.resumo-card{
+
+    border:none;
+
+    border-radius:18px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.resumo-card h3{
+
+    margin-top:10px;
+
+    font-size:2rem;
+
+    font-weight:700;
+}
+
+.icone-verde{
+
+    font-size:2rem;
+
+    color:var(--verde);
+}
+
+.icone-amarelo{
+
+    font-size:2rem;
+
+    color:var(--amarelo);
+}
+
+.grupo-card{
+
+    border:none;
+
+    border-radius:18px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+    margin-bottom:25px;
+
+    animation:fadeIn .3s ease;
+}
+
+.grupo{
+
+    background:var(--card);
+
+    border-radius:18px;
+
+    padding:20px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.grupo h2{
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+    font-weight:700;
+}
+
+.selecao{
+
+    margin-top:20px;
+}
+
+.selecao h3{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:1.1rem;
+
+    font-weight:600;
+}
+
+.bandeira{
+
+    width:36px;
+
+    border-radius:4px;
+
+    border:1px solid #ddd;
+}
+
+.figurinhas{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fill,minmax(60px,1fr));
+
+    gap:6px;
+
+    margin-top:10px;
+}
+
+.fig{
+
+    padding:10px;
+
+    text-align:center;
+
+    background:#e9ecef;
+
+    border:1px solid #ced4da;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.fig:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 4px 10px rgba(0,0,0,.12);
+}
+
+.fig.colada{
+
+    background:var(--verde);
+
+    color:white;
+
+    border-color:var(--verde);
+}
+
+.form-control{
+
+    border-radius:12px;
+}
+
+.btn{
+
+    border-radius:12px;
+}
+
+.dark{
+
+    --fundo:#121212;
+
+    --texto:#f5f5f5;
+
+    --card:#1f1f1f;
+}
+
+.dark .grupo{
+
+    background:#1f1f1f;
+}
+
+.dark .grupo-card{
+
+    background:#1f1f1f;
+}
+
+.dark .card{
+
+    background:#1f1f1f;
+
+    color:white;
+}
+
+.dark .fig{
+
+    background:#2d2d2d;
+
+    color:white;
+
+    border-color:#444;
+}
+
+.dark .fig.colada{
+
+    background:var(--verde);
+
+    color:white;
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(10px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:768px){
+
+    .titulo-principal{
+
+        font-size:1.8rem;
+    }
+
+    .bandeira{
+
+        width:28px;
+    }
+
+    .fig{
+
+        padding:8px;
+
+        font-size:12px;
+    }
+
+    .figurinhas{
+
+        grid-template-columns:
+            repeat(auto-fill,minmax(50px,1fr));
+    }
+}
+
+.btnTemaFlutuante{
+
+    position:fixed;
+
+    top:15px;
+    right:15px;
+
+    width:50px;
+    height:50px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#212529;
+
+    color:white;
+
+    cursor:pointer;
+
+    z-index:9999;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.25);
+
+    transition:.2s;
+}
+
+.btnTemaFlutuante:hover{
+
+    transform:scale(1.08);
+}
+
+#rankingSelecoes{
+
+    max-height:500px;
+
+    overflow-y:auto;
+}
+
+.linhaRanking{
+
+    margin-bottom:12px;
+}
+
+.linhaRanking .cabecalho{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    font-size:14px;
+
+    margin-bottom:4px;
+}
+
+.barra{
+
+    height:12px;
+
+    background:#ddd;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.barraInterna{
+
+    height:100%;
+
+    background:#198754;
+
+    transition:.4s;
+}
+
+.cardEstatistica{
+
+    display:inline-block;
+
+    background:#f8f9fa;
+
+    padding:10px 15px;
+
+    margin:5px;
+
+    border-radius:10px;
+
+    font-size:14px;
+
+    font-weight:500;
+}
+
+.dark .cardEstatistica{
+
+    background:#2d2d2d;
+}
+
+.btnEstatisticasFlutuante{
+
+    position:fixed;
+
+    top:75px;
+
+    right:15px;
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#fd7e14;
+
+    color:white;
+
+    cursor:pointer;
+
+    z-index:9999;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.25);
+}
+
+.btnEstatisticasFlutuante:hover{
+
+    transform:scale(1.08);
+}
+
+.btnRepetidasFlutuante{
+
+    position:fixed;
+
+    top:135px;
+
+    right:15px;
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#dc3545;
+
+    color:white;
+
+    cursor:pointer;
+
+    z-index:9999;
+}
+
+.fig.repetida{
+
+    background:#0d6efd;
+
+    color:white;
+
+    border-color:#0d6efd;
+
+    position:relative;
+}
+
+.expoente{
+
+    position:absolute;
+
+    top:3px;
+
+    right:5px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    line-height:1;
+}
+
+@keyframes shake{
+
+    0% { transform:translateX(0); }
+
+    25% { transform:translateX(-3px); }
+
+    50% { transform:translateX(3px); }
+
+    75% { transform:translateX(-3px); }
+
+    100% { transform:translateX(0); }
+}
+
+.shake{
+
+    animation:shake .3s;
+}
+
+.btnTrocasFlutuante{
+
+    position:fixed;
+
+    top:195px;
+
+    right:15px;
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#198754;
+
+    color:white;
+
+    cursor:pointer;
+
+    z-index:9999;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.25);
+}
+
+#menuRepetidas{
+
+    display:none;
+
+    position:fixed;
+
+    z-index:10000;
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:10px;
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,.25);
+
+    min-width:140px;
+
+    text-align:center;
+}
+
+.dark #menuRepetidas{
+
+    background:#2d2d2d;
+
+    color:white;
+}
+
+#tituloRepetida{
+
+    font-size:14px;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+}
+
+#menuRepetidas button{
+
+    border:none;
+
+    width:35px;
+
+    height:35px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:18px;
+}
+
+#addRep{
+
+    background:#198754;
+
+    color:white;
+}
+
+#removeRep{
+
+    background:#dc3545;
+
+    color:white;
+}
+
+#qtdRep{
+
+    display:inline-block;
+
+    min-width:30px;
+
+    font-weight:bold;
+}
+
+.trofeu-copa{
+
+    color:#d4af37 !important;
+
+    font-size:1.2em;
+
+    margin-right:12px;
+
+    text-shadow:
+        0 0 5px rgba(212,175,55,.8),
+        0 0 10px rgba(212,175,55,.5),
+        0 0 20px rgba(212,175,55,.3);
+}
+
+.btnFerramentasFlutuante{
+
+    position:fixed;
+
+    top:255px;
+
+    right:15px;
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#6c757d;
+
+    color:white;
+
+    cursor:pointer;
+
+    z-index:9999;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.25);
+}
+
+.btnFerramentasFlutuante:hover{
+
+    transform:scale(1.08);
+}
