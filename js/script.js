@@ -1,5 +1,6 @@
 const TOTAL_FIGURINHAS = 980;
 
+let modoEdicao = false;
 let figurinhaAtual = null;
 let figurinhaDivAtual = null;
 
@@ -18,14 +19,14 @@ const grupos = {
     "L": ["Inglaterra", "Croácia", "Gana", "Panamá"]
 };
 
-function carregarSelecoesCombo(){
+function carregarSelecoesCombo() {
 
     const combo =
         document.getElementById(
             "selectSelecao"
         );
 
-    if(!combo) return;
+    if (!combo) return;
 
     combo.innerHTML = "";
 
@@ -125,6 +126,8 @@ function paraExpoente(numero) {
         .join('');
 }
 
+// ----
+
 const container = document.getElementById("container");
 
 function criarFigurinha(id, texto) {
@@ -141,6 +144,13 @@ function criarFigurinha(id, texto) {
     div.addEventListener("contextmenu", (e) => {
 
         e.preventDefault();
+
+        if (!modoEdicao) {
+
+             mostrarAvisoBloqueado(div);
+
+            return;
+        }
 
         figurinhaAtual = id;
         figurinhaDivAtual = div;
@@ -180,6 +190,13 @@ function criarFigurinha(id, texto) {
 
     // Clique normal = colar/descolar
     div.addEventListener("click", () => {
+
+        if (!modoEdicao) {
+
+            mostrarAvisoBloqueado(div);
+
+            return;
+        }
 
         const repetidas =
             Number(
@@ -414,6 +431,16 @@ for (const grupo in grupos) {
             ${selecao}
         `;
 
+        const progresso =
+            document.createElement("div");
+
+        progresso.className =
+            "progressoSelecao";
+
+        progresso.id =
+            `progresso-${selecao}`;
+
+
         const figs = document.createElement("div");
 
         figs.className = "figurinhas";
@@ -429,7 +456,12 @@ for (const grupo in grupos) {
         }
 
         selecaoDiv.appendChild(titulo);
+
         selecaoDiv.appendChild(figs);
+
+        selecaoDiv.appendChild(
+            progresso
+        );
 
         bloco.appendChild(selecaoDiv);
     });
@@ -601,6 +633,7 @@ function atualizarRanking() {
     });
 
     atualizarEstatisticas(dados);
+    atualizarContadoresSelecoes();
 }
 
 function atualizarEstatisticas(dados) {
@@ -916,11 +949,11 @@ const btnFerramentas =
         "btnFerramentas"
     );
 
-if(btnFerramentas){
+if (btnFerramentas) {
 
     btnFerramentas.addEventListener(
         "click",
-        ()=>{
+        () => {
 
             new bootstrap.Modal(
                 document.getElementById(
@@ -937,28 +970,28 @@ const btnLimparRepetidas =
         "btnLimparRepetidas"
     );
 
-if(btnLimparRepetidas){
+if (btnLimparRepetidas) {
 
     btnLimparRepetidas.addEventListener(
         "click",
-        ()=>{
+        () => {
 
-            if(
+            if (
                 !confirm(
                     "Remover todas as repetidas?"
                 )
-            ){
+            ) {
                 return;
             }
 
             Object.keys(localStorage)
-                .forEach(chave=>{
+                .forEach(chave => {
 
-                    if(
+                    if (
                         chave.endsWith(
                             "-rep"
                         )
-                    ){
+                    ) {
 
                         localStorage.removeItem(
                             chave
@@ -978,30 +1011,30 @@ const btnLimparSelecao =
         "btnLimparSelecao"
     );
 
-if(btnLimparSelecao){
+if (btnLimparSelecao) {
 
     btnLimparSelecao.addEventListener(
         "click",
-        ()=>{
+        () => {
 
             const selecao =
                 document.getElementById(
                     "selectSelecao"
                 ).value;
 
-            if(
+            if (
                 !confirm(
                     `Limpar todas as figurinhas da seleção ${selecao}?`
                 )
-            ){
+            ) {
                 return;
             }
 
-            for(
-                let i=1;
-                i<=20;
+            for (
+                let i = 1;
+                i <= 20;
                 i++
-            ){
+            ) {
 
                 localStorage.removeItem(
                     `${selecao}-${i}`
@@ -1024,17 +1057,17 @@ const btnResetAlbum =
         "btnResetAlbum"
     );
 
-if(btnResetAlbum){
+if (btnResetAlbum) {
 
     btnResetAlbum.addEventListener(
         "click",
-        ()=>{
+        () => {
 
-            if(
+            if (
                 !confirm(
                     "ATENÇÃO!\n\nApagar todo o álbum?"
                 )
-            ){
+            ) {
                 return;
             }
 
@@ -1045,8 +1078,143 @@ if(btnResetAlbum){
     );
 }
 
+// ---
+
+const btnModoEdicao =
+    document.getElementById(
+        "btnModoEdicao"
+    );
+
+if (btnModoEdicao) {
+
+    btnModoEdicao.addEventListener(
+        "click",
+        () => {
+
+            modoEdicao = !modoEdicao;
+
+            btnModoEdicao.innerHTML =
+                modoEdicao
+                    ? '<i class="fa-solid fa-lock-open"></i>'
+                    : '<i class="fa-solid fa-lock"></i>';
+
+            btnModoEdicao.style.background =
+                modoEdicao
+                    ? "#198754"
+                    : "#ffc107";
+
+            btnModoEdicao.title =
+                modoEdicao
+                    ? "Modo edição ativo"
+                    : "Modo navegação";
+        }
+    );
+}
+
+// ---
+
+
+// ----
+
+function atualizarContadoresSelecoes() {
+
+    Object.values(grupos)
+        .flat()
+        .forEach(selecao => {
+
+            let coladas = 0;
+
+            for (let i = 1; i <= 20; i++) {
+
+                if (
+                    localStorage.getItem(
+                        `${selecao}-${i}`
+                    ) === "1"
+                ) {
+                    coladas++;
+                }
+            }
+
+            const faltantes =
+                20 - coladas;
+
+            const percentual =
+                Math.round(
+                    coladas * 100 / 20
+                );
+
+            const div =
+                document.getElementById(
+                    `progresso-${selecao}`
+                );
+
+            if (div) {
+
+                div.innerHTML = `
+
+                <div class="progress mb-1">
+
+                    <div
+                        class="progress-bar"
+                        style="
+                            width:${percentual}%;
+                        ">
+
+                        ${percentual}%
+
+                    </div>
+
+                </div>
+
+                <small>
+
+                    ${coladas}/20 coladas
+                    •
+                    ${faltantes} faltantes
+
+                </small>
+                `;
+            }
+        });
+}
+
+// ----
+
+function mostrarAvisoBloqueado(div){
+
+    const toast =
+        new bootstrap.Toast(
+            document.getElementById(
+                "toastBloqueado"
+            )
+        );
+
+    toast.show();
+
+    div.classList.add("shake");
+
+    setTimeout(() => {
+
+        div.classList.remove("shake");
+
+    }, 300);
+
+    const btn =
+        document.getElementById(
+            "btnModoEdicao"
+        );
+
+    btn.classList.add("pulse");
+
+    setTimeout(() => {
+
+        btn.classList.remove("pulse");
+
+    }, 2000);
+}
+
+// ---
+
 carregarSelecoesCombo();
 
 atualizarTotal();
-
-

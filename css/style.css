@@ -108,9 +108,22 @@ body{
     font-weight:700;
 }
 
+/* .selecao{
+
+    margin-top:20px;
+} */
+
 .selecao{
 
     margin-top:20px;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    background:#fafafa;
+
+    border:1px solid #e5e5e5;
 }
 
 .selecao h3{
@@ -279,7 +292,7 @@ body{
     }
 }
 
-.btnTemaFlutuante{
+/* .btnTemaFlutuante{
 
     position:fixed;
 
@@ -309,7 +322,7 @@ body{
 .btnTemaFlutuante:hover{
 
     transform:scale(1.08);
-}
+} */
 
 #rankingSelecoes{
 
@@ -382,16 +395,13 @@ body{
 
     position:fixed;
 
-    top:75px;
-
+    bottom:200px;
     right:15px;
 
     width:50px;
-
     height:50px;
 
     border:none;
-
     border-radius:50%;
 
     background:#fd7e14;
@@ -401,9 +411,6 @@ body{
     cursor:pointer;
 
     z-index:9999;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.25);
 }
 
 .btnEstatisticasFlutuante:hover{
@@ -415,16 +422,13 @@ body{
 
     position:fixed;
 
-    top:135px;
-
+    bottom:80px;
     right:15px;
 
     width:50px;
-
     height:50px;
 
     border:none;
-
     border-radius:50%;
 
     background:#dc3545;
@@ -434,7 +438,16 @@ body{
     cursor:pointer;
 
     z-index:9999;
+ 
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.25);
 }
+
+.btnRepetidasFlutuante:hover{
+
+    transform:scale(1.08);
+}
+
 
 .fig.repetida{
 
@@ -484,16 +497,13 @@ body{
 
     position:fixed;
 
-    top:195px;
-
+    bottom:140px;
     right:15px;
 
     width:50px;
-
     height:50px;
 
     border:none;
-
     border-radius:50%;
 
     background:#198754;
@@ -506,6 +516,11 @@ body{
 
     box-shadow:
         0 4px 15px rgba(0,0,0,.25);
+}
+
+.btnTrocasFlutuante:hover{
+
+    transform:scale(1.08);
 }
 
 #menuRepetidas{
@@ -529,6 +544,8 @@ body{
 
     text-align:center;
 }
+
+
 
 .dark #menuRepetidas{
 
@@ -602,7 +619,7 @@ body{
 
     position:fixed;
 
-    top:255px;
+    bottom:20px;
 
     right:15px;
 
@@ -629,4 +646,73 @@ body{
 .btnFerramentasFlutuante:hover{
 
     transform:scale(1.08);
+}
+
+.btnModoEdicaoFlutuante{
+
+    position:fixed;
+
+    top:255px;
+
+    bottom:20px;
+
+    right:15px;
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#ffc107;
+
+    color:#000;
+
+    cursor:pointer;
+
+    z-index:9999;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.25);
+
+    transition:.2s;
+}
+
+.btnModoEdicaoFlutuante:hover{
+
+    transform: scale(1.08);
+}
+
+/* ---- */
+
+
+.progressoSelecao{
+
+    margin-top:15px;
+
+    padding-top:10px;
+
+    border-top:1px solid #ddd;
+}
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.2);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+.pulse{
+
+    animation:
+        pulse .5s infinite;
 }
