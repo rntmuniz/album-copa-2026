@@ -28,294 +28,248 @@
 
 <body>
 
-<button
-    id="btnModoEdicao"
-    class="btnModoEdicaoFlutuante"
-    title="Ativar edição">
+    <button id="btnModoEdicao" class="btnModoEdicaoFlutuante" title="Ativar edição">
 
-   <i class="fa-solid fa-lock"></i>
+        <i class="fa-solid fa-lock"></i>
 
-    <button id="btnEstatisticas" class="btnEstatisticasFlutuante" title="Ver estatísticas do álbum">
+        <button id="btnEstatisticas" class="btnEstatisticasFlutuante" title="Ver estatísticas do álbum">
 
-        <i class="fa-solid fa-chart-line"></i>
+            <i class="fa-solid fa-chart-line"></i>
 
-    </button>
-
-    <button id="btnRepetidas" class="btnRepetidasFlutuante" title="Ver figurinhas repetidas">
-
-        <i class="fa-solid fa-repeat"></i>
-
-    </button>
-
-    <button id="btnTrocas" class="btnTrocasFlutuante" title="Gerar lista de trocas">
-
-        <i class="fa-solid fa-handshake"></i>
-
-    </button>
-
-    <button id="btnFerramentas" class="btnFerramentasFlutuante" title="Ferramentas de limpeza">
-
-        <i class="fa-solid fa-trash"></i>
-
-    </button>
-
-    <div class="container py-4">
-
-        <h1 class="titulo-principal">
-
-            <i class="fa-solid fa-futbol"></i>
-
-            Álbum Copa do Mundo 2026
-
-            <i class="fa-solid fa-trophy trofeu-copa"></i>
-
-        </h1>
-
-        <div class="row mb-4 g-3">
-
-            <div class="col-md-6">
-
-                <div class="card resumo-card">
-
-                    <div class="card-body text-center">
-
-                        <i class="fa-solid fa-check-circle icone-verde"></i>
-
-                        <h3 id="total">0</h3>
-
-                        <span>Figurinhas Coladas</span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-6">
-
-                <div class="card resumo-card">
-
-                    <div class="card-body text-center">
-
-                        <i class="fa-solid fa-list icone-amarelo"></i>
-
-                        <h3 id="faltantes">980</h3>
-
-                        <span>Figurinhas Faltantes</span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="row mb-4">
-
-            <div class="col-md-8 mb-2">
-
-                <input type="text" id="busca" class="form-control form-control-lg" placeholder="🔍 Buscar seleção...">
-
-            </div>
-
-        </div>
-
-        <div id="container"></div>
-
-        <div class="card grupo-card mt-4">
-
-            <div class="card-body">
-
-                <h2 class="text-center">
-
-                    ⭐ Figurinhas Especiais
-
-                </h2>
-
-                <div id="especiais"></div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="modal fade" id="modalEstatisticas" tabindex="-1">
-
-        <div class="modal-dialog modal-xl">
-
-            <div class="modal-content">
-
-                <div class="modal-header">
-
-                    <h5 class="modal-title">
-
-                        📊 Estatísticas do Álbum
-
-                    </h5>
-
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                    </button>
-
-                </div>
-
-                <div class="modal-body">
-
-                    <div id="estatisticasGerais">
-                    </div>
-
-                    <hr>
-
-                    <div id="rankingSelecoes">
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="modal fade" id="modalRepetidas" tabindex="-1">
-
-        <div class="modal-dialog modal-lg">
-
-            <div class="modal-content">
-
-                <div class="modal-header">
-
-                    <h5 class="modal-title">
-
-                        🔁 Figurinhas Repetidas
-
-                    </h5>
-
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                    </button>
-
-                </div>
-
-                <div class="modal-body">
-
-                    <div id="listaRepetidas"></div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="modal fade" id="modalTrocas" tabindex="-1">
-
-        <div class="modal-dialog modal-lg">
-
-            <div class="modal-content">
-
-                <div class="modal-header">
-
-                    <h5 class="modal-title">
-
-                        🤝 Lista de Trocas
-
-                    </h5>
-
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                    </button>
-
-                </div>
-
-                <div class="modal-body">
-
-                    <pre id="listaTrocas"></pre>
-
-                    <button id="copiarTrocas" class="btn btn-success">
-
-                        Copiar Lista
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div id="menuRepetidas">
-
-        <div id="tituloRepetida"></div>
-
-        <button id="addRep">
-            ➕
         </button>
 
-        <span id="qtdRep">
-            0
-        </span>
+        <button id="btnRepetidas" class="btnRepetidasFlutuante" title="Ver figurinhas repetidas">
 
-        <button id="removeRep">
-            ➖
+            <i class="fa-solid fa-repeat"></i>
+
         </button>
 
-    </div>
+        <button id="btnTrocas" class="btnTrocasFlutuante" title="Gerar lista de trocas">
 
-    <div class="modal fade" id="modalFerramentas" tabindex="-1">
+            <i class="fa-solid fa-handshake"></i>
 
-        <div class="modal-dialog">
+        </button>
 
-            <div class="modal-content">
+        <button id="btnFerramentas" class="btnFerramentasFlutuante" title="Ferramentas de limpeza">
 
-                <div class="modal-header">
+            <i class="fa-solid fa-trash"></i>
 
-                    <h5 class="modal-title">
+        </button>
 
-                        🗑️ Ferramentas de Limpeza
+        <button id="btnTopo" class="btnTopoFlutuante" title="Ir para o topo">
 
-                    </h5>
+            <i class="fa-solid fa-arrow-up"></i>
 
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                    </button>
+        </button>
 
-                </div>
+        <button id="btnFinal" class="btnFinalFlutuante" title="Ir para o final">
 
-                <div class="modal-body">
+            <i class="fa-solid fa-arrow-down"></i>
 
-                    <div class="d-grid gap-2">
+        </button>
 
-                        <button id="btnLimparRepetidas" class="btn btn-warning">
+        <div class="container py-4">
 
-                            Limpar Todas as Repetidas
+            <h1 class="titulo-principal">
 
-                        </button>
+                <i class="fa-solid fa-futbol"></i>
 
-                        <div class="mb-3">
+                Álbum Copa do Mundo 2026
 
-                            <label class="form-label">
+                <i class="fa-solid fa-trophy trofeu-copa"></i>
 
-                                Seleção
+            </h1>
 
-                            </label>
+            <div class="row mb-4 g-3">
 
-                            <select id="selectSelecao" class="form-select">
+                <div class="col-md-6">
 
-                            </select>
+                    <div class="card resumo-card">
+
+                        <div class="card-body text-center">
+
+                            <i class="fa-solid fa-check-circle icone-verde"></i>
+
+                            <h3 id="total">0</h3>
+
+                            <span>Figurinhas Coladas</span>
+
+                            <div class="barraResumo">
+
+                                <div id="barraAlbum" class="barraResumoInterna">
+                                </div>
+
+                            </div>
+
+                            <small id="percentualAlbum">
+
+                                0%
+
+                            </small>
 
                         </div>
 
-                        <button id="btnLimparSelecao" class="btn btn-primary">
+                    </div>
 
-                            Limpar Seleção Selecionada
+                </div>
 
+                <div class="col-md-6">
+
+                    <div class="card resumo-card">
+
+                        <div class="card-body text-center">
+
+                            <i class="fa-solid fa-list icone-amarelo"></i>
+
+                            <h3 id="faltantes">980</h3>
+
+                            <span>Figurinhas Faltantes</span>
+
+                            <div class="barraResumo">
+
+                                <div id="barraFaltantes" class="barraResumoInterna barraFaltante">
+                                </div>
+
+                            </div>
+
+                            <small id="percentualFaltante">
+
+                                100%
+
+                            </small>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row mb-4">
+
+                <div class="col-md-8 mb-2">
+
+                    <input type="text" id="busca" class="form-control form-control-lg"
+                        placeholder="🔍 Buscar seleção...">
+
+                </div>
+
+            </div>
+
+            <div id="container"></div>
+
+            <div class="card grupo-card mt-4">
+
+                <div class="card-body">
+
+                    <h2 class="text-center">
+
+                        ⭐ Figurinhas Especiais
+
+                    </h2>
+
+                    <div id="especiais"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="modal fade" id="modalEstatisticas" tabindex="-1">
+
+            <div class="modal-dialog modal-xl">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h5 class="modal-title">
+
+                            📊 Estatísticas do Álbum
+
+                        </h5>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
                         </button>
 
-                        <button id="btnResetAlbum" class="btn btn-danger">
+                    </div>
 
-                            Resetar Álbum Completo
+                    <div class="modal-body">
 
+                        <div id="estatisticasGerais">
+                        </div>
+
+                        <hr>
+
+                        <div id="rankingSelecoes">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="modal fade" id="modalRepetidas" tabindex="-1">
+
+            <div class="modal-dialog modal-lg">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h5 class="modal-title">
+
+                            🔁 Figurinhas Repetidas
+
+                        </h5>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div id="listaRepetidas"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="modal fade" id="modalTrocas" tabindex="-1">
+
+            <div class="modal-dialog modal-lg">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h5 class="modal-title">
+
+                            🤝 Lista de Trocas
+
+                        </h5>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+
+                    </div>
+
+                    <div class="modal-body">
+
+                        <pre id="listaTrocas"></pre>
+
+                        <button id="copiarTrocas" class="btn btn-success">
+
+                            Copiar Lista
                         </button>
 
                     </div>
@@ -326,41 +280,150 @@
 
         </div>
 
-    </div>
+        <div id="menuRepetidas">
 
-    <script src="js/script.js"></script>
+            <div id="tituloRepetida"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+            <button id="addRep">
+                ➕
+            </button>
 
+            <span id="qtdRep">
+                0
+            </span>
 
-<div
-    class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
-
-    <div
-        id="toastBloqueado"
-        class="toast text-bg-warning border-0"
-        role="alert">
-
-        <div class="d-flex">
-
-            <div class="toast-body">
-
-                🔒 Modo edição desativado.
-                Clique no cadeado para editar.
-
-            </div>
-
-            <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="toast">
+            <button id="removeRep">
+                ➖
             </button>
 
         </div>
 
-    </div>
+        <div class="modal fade" id="modalFerramentas" tabindex="-1">
 
-</div>
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h5 class="modal-title">
+
+                            🧰 Ferramentas
+
+                        </h5>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+
+                    </div>
+
+                    <div class="modal-body">
+
+                        <!-- BACKUP -->
+
+                        <h6 class="mb-3">
+
+                            💾 Backup da Coleção
+
+                        </h6>
+
+                        <div class="d-grid gap-2 mb-4">
+
+                            <button id="btnExportarJson" class="btn btn-success">
+
+                                📤 Exportar Backup
+
+                            </button>
+
+                            <button id="btnImportarJson" class="btn btn-primary">
+
+                                📥 Restaurar Backup
+
+                            </button>
+
+                            <input type="file" id="arquivoImportacao" accept=".json" style="display:none;">
+                        </div>
+
+                        <hr>
+
+                        <!-- LIMPEZA -->
+
+                        <h6 class="mb-3">
+
+                            🗑️ Limpeza
+
+                        </h6>
+
+                        <div class="d-grid gap-2">
+
+                            <button id="btnLimparRepetidas" class="btn btn-warning">
+
+                                Limpar Todas as Repetidas
+
+                            </button>
+
+                            <div class="mb-2">
+
+                                <label class="form-label">
+
+                                    Seleção
+
+                                </label>
+
+                                <select id="selectSelecao" class="form-select">
+
+                                </select>
+
+                            </div>
+
+                            <button id="btnLimparSelecao" class="btn btn-primary">
+
+                                Limpar Seleção Selecionada
+
+                            </button>
+
+                            <button id="btnResetAlbum" class="btn btn-danger">
+
+                                Resetar Álbum Completo
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="js/script.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
+        <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+
+            <div id="toastBloqueado" class="toast text-bg-warning border-0" role="alert">
+
+                <div class="d-flex">
+
+                    <div class="toast-body">
+
+                        🔒 Modo edição desativado.
+                        Clique no cadeado para editar.
+
+                    </div>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="toast">
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
 
 </body>
 

@@ -147,7 +147,7 @@ function criarFigurinha(id, texto) {
 
         if (!modoEdicao) {
 
-             mostrarAvisoBloqueado(div);
+            mostrarAvisoBloqueado(div);
 
             return;
         }
@@ -477,7 +477,7 @@ gradeEspeciais.className = "figurinhas";
 
 for (let i = 0; i <= 19; i++) {
 
-    const codigo = "FWC" + String(i).padStart(2, "0");
+    const codigo = "FWC " + String(i).padStart(2, "0");
 
     gradeEspeciais.appendChild(
         criarFigurinha(
@@ -495,12 +495,52 @@ function atualizarTotal() {
         document.querySelectorAll(".fig.colada")
             .length;
 
+    const percentualAlbum =
+        Math.round(
+            total * 100 /
+            TOTAL_FIGURINHAS
+        );
+
+    const percentualFaltante =
+        100 - percentualAlbum;
+
+
+    document.getElementById(
+        "percentualAlbum"
+    ).innerText =
+        percentualAlbum + "%";
+
+    document.getElementById(
+        "percentualFaltante"
+    ).innerText =
+        percentualFaltante + "%";
+
+    document.getElementById(
+        "barraAlbum"
+    ).style.width =
+        percentualAlbum + "%";
+
+    document.getElementById(
+        "barraFaltantes"
+    ).style.width =
+        percentualFaltante + "%";
+
     document.getElementById("total")
         .innerText = total;
 
     document.getElementById("faltantes")
         .innerText =
         TOTAL_FIGURINHAS - total;
+
+    document.getElementById(
+        "percentualAlbum"
+    ).innerText =
+        percentualAlbum + "%";
+
+    document.getElementById(
+        "percentualFaltante"
+    ).innerText =
+        percentualFaltante + "%";
 
     atualizarRanking();
 }
@@ -887,6 +927,8 @@ function gerarListaTrocas() {
     return texto;
 }
 
+// ---
+
 const btnTrocas =
     document.getElementById(
         "btnTrocas"
@@ -913,6 +955,8 @@ if (btnTrocas) {
         }
     );
 }
+
+// ---
 
 const copiar =
     document.getElementById(
@@ -944,6 +988,8 @@ if (copiar) {
     );
 }
 
+// ---
+
 const btnFerramentas =
     document.getElementById(
         "btnFerramentas"
@@ -964,6 +1010,7 @@ if (btnFerramentas) {
     );
 }
 
+// ---
 
 const btnLimparRepetidas =
     document.getElementById(
@@ -1078,7 +1125,7 @@ if (btnResetAlbum) {
     );
 }
 
-// ---
+// ------
 
 const btnModoEdicao =
     document.getElementById(
@@ -1113,8 +1160,66 @@ if (btnModoEdicao) {
 
 // ---
 
+const btnExportarJson =
+    document.getElementById(
+        "btnExportarJson"
+    );
+
+if (btnExportarJson) {
+
+    btnExportarJson.addEventListener(
+        "click",
+        exportarColecao
+    );
+}
 
 // ----
+
+const btnTopo =
+    document.getElementById(
+        "btnTopo"
+    );
+
+if (btnTopo) {
+
+    btnTopo.addEventListener(
+        "click",
+        () => {
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+            });
+        }
+    );
+}
+
+const btnFinal =
+    document.getElementById(
+        "btnFinal"
+    );
+
+if (btnFinal) {
+
+    btnFinal.addEventListener(
+        "click",
+        () => {
+
+            window.scrollTo({
+
+                top:
+                    document.body
+                        .scrollHeight,
+
+                behavior: "smooth"
+            });
+        }
+    );
+}
+
+// ---
 
 function atualizarContadoresSelecoes() {
 
@@ -1168,7 +1273,7 @@ function atualizarContadoresSelecoes() {
 
                 <small>
 
-                    ${coladas}/20 coladas
+                    ${coladas} coladas
                     •
                     ${faltantes} faltantes
 
@@ -1180,7 +1285,7 @@ function atualizarContadoresSelecoes() {
 
 // ----
 
-function mostrarAvisoBloqueado(div){
+function mostrarAvisoBloqueado(div) {
 
     const toast =
         new bootstrap.Toast(
@@ -1212,6 +1317,235 @@ function mostrarAvisoBloqueado(div){
 
     }, 2000);
 }
+
+// ---
+
+function exportarColecao() {
+
+    const dados = {};
+
+    for (let i = 0; i < localStorage.length; i++) {
+
+        const chave =
+            localStorage.key(i);
+
+        dados[chave] =
+            localStorage.getItem(
+                chave
+            );
+    }
+
+    const json =
+        JSON.stringify(
+            dados,
+            null,
+            2
+        );
+
+    const blob =
+        new Blob(
+            [json],
+            {
+                type:
+                    "application/json"
+            }
+        );
+
+    const url =
+        URL.createObjectURL(
+            blob
+        );
+
+    const a =
+        document.createElement(
+            "a"
+        );
+
+    a.href = url;
+
+    // a.download =
+    //     "album-copa-2026-backup.json";
+
+    const agora = new Date();
+
+    const timestamp =
+        agora.getFullYear() +
+        String(
+            agora.getMonth() + 1
+        ).padStart(2, "0") +
+        String(
+            agora.getDate()
+        ).padStart(2, "0") +
+        "-" +
+        String(
+            agora.getHours()
+        ).padStart(2, "0") +
+        String(
+            agora.getMinutes()
+        ).padStart(2, "0") +
+        String(
+            agora.getSeconds()
+        ).padStart(2, "0");
+
+    a.download =
+        `album-copa-2026-${timestamp}.json`;
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+}
+
+// ---
+
+const btnImportarJson =
+    document.getElementById(
+        "btnImportarJson"
+    );
+
+const arquivoImportacao =
+    document.getElementById(
+        "arquivoImportacao"
+    );
+
+if (btnImportarJson) {
+
+    btnImportarJson.addEventListener(
+        "click",
+        () => {
+
+            arquivoImportacao.click();
+
+        }
+    );
+}
+
+// ---
+
+if (arquivoImportacao) {
+
+    arquivoImportacao.addEventListener(
+        "change",
+        importarColecao
+    );
+}
+
+// ----
+
+function importarColecao(event) {
+
+    const arquivo =
+        event.target.files[0];
+
+    if (!arquivo) {
+
+        return;
+    }
+
+    const leitor =
+        new FileReader();
+
+    leitor.onload =
+        function (e) {
+
+            try {
+
+                const dados =
+                    JSON.parse(
+                        e.target.result
+                    );
+
+                if (
+                    !confirm(
+                        "Importar backup e substituir os dados atuais?"
+                    )
+                ) {
+
+                    return;
+                }
+
+                localStorage.clear();
+
+                Object.keys(dados)
+                    .forEach(chave => {
+
+                        localStorage.setItem(
+                            chave,
+                            dados[chave]
+                        );
+                    });
+
+                alert(
+                    "Backup restaurado com sucesso!"
+                );
+
+                location.reload();
+
+            } catch (error) {
+
+                alert(
+                    "Arquivo JSON inválido."
+                );
+
+                console.error(
+                    error
+                );
+            }
+        };
+
+    leitor.readAsText(
+        arquivo
+    );
+}
+
+// ---
+
+function atualizarBotoesNavegacao() {
+
+    const btnTopo =
+        document.getElementById(
+            "btnTopo"
+        );
+
+    const btnFinal =
+        document.getElementById(
+            "btnFinal"
+        );
+
+    const posicaoAtual =
+        window.scrollY;
+
+    const alturaPagina =
+        document.documentElement.scrollHeight;
+
+    const alturaTela =
+        window.innerHeight;
+
+    const estaNoTopo =
+        posicaoAtual < 100;
+
+    const estaNoFinal =
+        posicaoAtual + alturaTela >
+        alturaPagina - 100;
+
+    btnTopo.style.display =
+        estaNoTopo
+            ? "none"
+            : "block";
+
+    btnFinal.style.display =
+        estaNoFinal
+            ? "none"
+            : "block";
+}
+
+// ---
+
+window.addEventListener(
+    "scroll",
+    atualizarBotoesNavegacao
+);
+
+atualizarBotoesNavegacao();
 
 // ---
 
