@@ -158,14 +158,12 @@ body {
         repeat(auto-fit,
             minmax(70px, 1fr));
 
-    gap: 6px;
+    gap: 8px;
 
     margin-top: 10px;
 }
 
 .fig {
-
-    min-width: 70px;
 
     padding: 10px;
 
@@ -927,14 +925,4 @@ body {
 
         white-space: nowrap;
     }
-}
-
-.figurinhas-coca {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(7, 1fr);
-
-    gap: 6px;
 }
