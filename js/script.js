@@ -504,11 +504,11 @@ const gradeCoca =
 gradeCoca.className =
     "figurinhas";
 
-for(let i=1;i<=14;i++){
+for (let i = 1; i <= 14; i++) {
 
     const codigo =
         "CC " +
-        String(i).padStart(2,"0");
+        String(i).padStart(2, "0");
 
     gradeCoca.appendChild(
 
@@ -775,9 +775,11 @@ function atualizarEstatisticas(dados) {
     `;
 }
 
+// ---
+
 const btnEstatisticas =
     document.getElementById(
-        "btnEstatisticas"
+        "menuEstatisticas"
     );
 
 if (btnEstatisticas) {
@@ -971,7 +973,7 @@ function gerarListaTrocas() {
 
 const btnTrocas =
     document.getElementById(
-        "btnTrocas"
+        "menuTrocas"
     );
 
 if (btnTrocas) {
@@ -1032,7 +1034,7 @@ if (copiar) {
 
 const btnFerramentas =
     document.getElementById(
-        "btnFerramentas"
+        "menuLimpeza"
     );
 
 if (btnFerramentas) {
@@ -1188,7 +1190,7 @@ if (btnModoEdicao) {
             btnModoEdicao.style.background =
                 modoEdicao
                     ? "#198754"
-                    : "#ffc107";
+                    : "#dc3545";
 
             btnModoEdicao.title =
                 modoEdicao
@@ -1403,9 +1405,6 @@ function exportarColecao() {
 
     a.href = url;
 
-    // a.download =
-    //     "album-copa-2026-backup.json";
-
     const agora = new Date();
 
     const timestamp =
@@ -1589,21 +1588,21 @@ atualizarBotoesNavegacao();
 
 // ---
 
-function atualizarEspeciais(){
+function atualizarEspeciais() {
 
     let coladas = 0;
 
-    for(let i=0;i<=19;i++){
+    for (let i = 0; i <= 19; i++) {
 
         const codigo =
             "FWC" +
-            String(i).padStart(2,"0");
+            String(i).padStart(2, "0");
 
-        if(
+        if (
             localStorage.getItem(
                 codigo
             ) === "1"
-        ){
+        ) {
 
             coladas++;
         }
@@ -1632,21 +1631,21 @@ function atualizarEspeciais(){
 
 // ---
 
-function atualizarCocaCola(){
+function atualizarCocaCola() {
 
     let coladas = 0;
 
-    for(let i=1;i<=14;i++){
+    for (let i = 1; i <= 14; i++) {
 
         const codigo =
             "CC" +
-            String(i).padStart(2,"0");
+            String(i).padStart(2, "0");
 
-        if(
+        if (
             localStorage.getItem(
                 codigo
             ) === "1"
-        ){
+        ) {
 
             coladas++;
         }
@@ -1674,6 +1673,45 @@ function atualizarCocaCola(){
 }
 
 // ---
+
+const btnMenuFerramentas =
+    document.getElementById(
+        "btnMenuFerramentas"
+    );
+
+const menuFerramentas =
+    document.getElementById(
+        "menuFerramentasFlutuante"
+    );
+
+if (btnMenuFerramentas) {
+
+    btnMenuFerramentas
+        .addEventListener(
+            "click",
+            (e) => {
+
+                e.stopPropagation();
+
+                menuFerramentas.style.display =
+                    menuFerramentas.style.display === "flex"
+                        ? "none"
+                        : "flex";
+            }
+        );
+}
+
+document.addEventListener(
+    "click",
+    () => {
+
+        menuFerramentas.style.display =
+            "none";
+    }
+);
+
+// ---
+
 
 carregarSelecoesCombo();
 
