@@ -27,6 +27,8 @@ body{
 
 .titulo-principal{
 
+    white-space: nowrap;
+
     text-align:center;
 
     font-size:2.5rem;
@@ -108,12 +110,9 @@ body{
     font-weight:700;
 }
 
-/* .selecao{
-
-    margin-top:20px;
-} */
-
 .selecao{
+
+   font-weight:600;
 
     margin-top:20px;
 
@@ -825,4 +824,43 @@ body{
 .btnFinalFlutuante:hover{
 
     transform:scale(1.08);
+}
+
+.infoSelecao{
+
+    margin-top:15px;
+
+    padding-top:15px;
+
+    border-top:1px solid #ddd;
+}
+
+#contadorEspeciais,
+#contadorCocaCola{
+
+    font-size:14px;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+}
+
+
+.trofeu-copa{
+
+    width:34px;
+
+    height:34px;
+
+    object-fit:contain;
+}
+
+@media (max-width: 576px){
+
+    .titulo-principal{
+
+        font-size:clamp(1.2rem, 4vw, 2rem);
+
+        white-space:nowrap;
+    }
 }

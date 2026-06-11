@@ -469,6 +469,8 @@ for (const grupo in grupos) {
     container.appendChild(bloco);
 }
 
+
+
 const especiais = document.getElementById("especiais");
 
 const gradeEspeciais = document.createElement("div");
@@ -488,6 +490,40 @@ for (let i = 0; i <= 19; i++) {
 }
 
 especiais.appendChild(gradeEspeciais);
+
+// ---
+
+const cocacola =
+    document.getElementById(
+        "cocacola"
+    );
+
+const gradeCoca =
+    document.createElement("div");
+
+gradeCoca.className =
+    "figurinhas";
+
+for(let i=1;i<=14;i++){
+
+    const codigo =
+        "CC " +
+        String(i).padStart(2,"0");
+
+    gradeCoca.appendChild(
+
+        criarFigurinha(
+            codigo,
+            codigo
+        )
+    );
+}
+
+cocacola.appendChild(
+    gradeCoca
+);
+
+// ---
 
 function atualizarTotal() {
 
@@ -543,6 +579,10 @@ function atualizarTotal() {
         percentualFaltante + "%";
 
     atualizarRanking();
+
+    atualizarEspeciais();
+
+    atualizarCocaCola();
 }
 
 const busca = document.getElementById("busca");
@@ -1546,6 +1586,92 @@ window.addEventListener(
 );
 
 atualizarBotoesNavegacao();
+
+// ---
+
+function atualizarEspeciais(){
+
+    let coladas = 0;
+
+    for(let i=0;i<=19;i++){
+
+        const codigo =
+            "FWC" +
+            String(i).padStart(2,"0");
+
+        if(
+            localStorage.getItem(
+                codigo
+            ) === "1"
+        ){
+
+            coladas++;
+        }
+    }
+
+    const faltantes =
+        20 - coladas;
+
+    const percentual =
+        Math.round(
+            coladas * 100 / 20
+        );
+
+    document.getElementById(
+        "contadorEspeciais"
+    ).innerText =
+
+        `${coladas} coladas • ${faltantes} faltantes`;
+
+    document.getElementById(
+        "barraEspeciais"
+    ).style.width =
+
+        percentual + "%";
+}
+
+// ---
+
+function atualizarCocaCola(){
+
+    let coladas = 0;
+
+    for(let i=1;i<=14;i++){
+
+        const codigo =
+            "CC" +
+            String(i).padStart(2,"0");
+
+        if(
+            localStorage.getItem(
+                codigo
+            ) === "1"
+        ){
+
+            coladas++;
+        }
+    }
+
+    const faltantes =
+        14 - coladas;
+
+    const percentual =
+        Math.round(
+            coladas * 100 / 14
+        );
+
+    document.getElementById(
+        "contadorCocaCola"
+    ).innerText =
+
+        `${coladas} coladas • ${faltantes} faltantes`;
+
+    document.getElementById(
+        "barraCocaCola"
+    ).style.width =
+
+        percentual + "%";
+}
 
 // ---
 
