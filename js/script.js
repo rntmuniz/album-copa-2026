@@ -172,14 +172,21 @@ function criarFigurinha(id, texto) {
 
         const menu =
             document.getElementById(
-                "menuRepetidas"
+                "popUpRepetidas"
             );
 
-        menu.style.left =
-            e.pageX + "px";
+        // menu.style.left =
+        //     e.pageX + "px";
 
-        menu.style.top =
-            e.pageY + "px";
+        // menu.style.top =
+        //     e.pageY + "px";
+
+        menu.style.left = "50%";
+
+        menu.style.top = "50%";
+
+        menu.style.transform =
+            "translate(-50%, -50%)";
 
         menu.style.display =
             "block";
@@ -284,7 +291,7 @@ document
         atualizarTotal();
 
         document.getElementById(
-            "menuRepetidas"
+            "popUpRepetidas"
         ).style.display = "none";
 
     });
@@ -338,7 +345,7 @@ document
         atualizarTotal();
 
         document.getElementById(
-            "menuRepetidas"
+            "popUpRepetidas"
         ).style.display = "none";
     });
 
@@ -350,7 +357,7 @@ document.addEventListener("click", (e) => {
 
     const menu =
         document.getElementById(
-            "menuRepetidas"
+            "popUpRepetidas"
         );
 
     if (
@@ -366,7 +373,6 @@ document.addEventListener("click", (e) => {
 // =====================================
 // ATUALIZA VISUAL DAS REPETIDAS
 // =====================================
-
 
 function atualizarVisualRepetida(div, id) {
 
@@ -469,7 +475,7 @@ for (const grupo in grupos) {
     container.appendChild(bloco);
 }
 
-
+// ----
 
 const especiais = document.getElementById("especiais");
 
@@ -615,22 +621,22 @@ if (localStorage.getItem("tema") === "dark") {
     document.body.classList.add("dark");
 }
 
-const btnTema = document.getElementById("tema");
+// const btnTema = document.getElementById("tema");
 
-if (btnTema) {
+// if (btnTema) {
 
-    btnTema.addEventListener("click", () => {
+//     btnTema.addEventListener("click", () => {
 
-        document.body.classList.toggle("dark");
+//         document.body.classList.toggle("dark");
 
-        localStorage.setItem(
-            "tema",
-            document.body.classList.contains("dark")
-                ? "dark"
-                : "light"
-        );
-    });
-}
+//         localStorage.setItem(
+//             "tema",
+//             document.body.classList.contains("dark")
+//                 ? "dark"
+//                 : "light"
+//         );
+//     });
+// }
 
 function atualizarRanking() {
 
@@ -800,6 +806,7 @@ if (btnEstatisticas) {
         });
 }
 
+
 function atualizarListaRepetidas() {
 
     const lista =
@@ -834,22 +841,131 @@ function atualizarListaRepetidas() {
                 }
             }
 
-            if (itens.length) {
+            html += `
+    <div class="mb-3">
 
-                html += `
-                    <div class="mb-3">
+        <h5>
 
-                        <h5>${selecao}</h5>
+            <img
+                class="bandeira-modal"
+                src="https://flagcdn.com/${bandeiras[selecao]}.svg"
+                alt="${selecao}"
+            >
 
-                        <div>
-                            ${itens.join(" • ")}
-                        </div>
+            ${selecao}
 
-                    </div>
-                `;
-            }
+        </h5>
+
+        <div>
+            ${itens.join(" • ")}
+        </div>
+
+    </div>
+`;
+
+            // if (itens.length) {
+
+            //     html += `
+            //         <div class="mb-3">
+
+            //             <h5>${selecao}</h5>
+
+            //             <div>
+            //                 ${itens.join(" • ")}
+            //             </div>
+
+            //         </div>
+            //     `;
+            // }
         });
 
+    // ==========================
+    // FIGURINHAS ESPECIAIS
+    // ==========================
+
+    let especiais = [];
+
+    for (let i = 0; i <= 19; i++) {
+
+        const codigo =
+            "FWC " +
+            String(i).padStart(2, "0");
+
+        const qtd =
+            Number(
+                localStorage.getItem(
+                    `${codigo}-rep`
+                )
+            ) || 0;
+
+        if (qtd > 0) {
+
+            especiais.push(
+                `${codigo}${paraExpoente(qtd)}`
+            );
+        }
+    }
+
+    if (especiais.length) {
+
+        html += `
+        <div class="mb-3">
+
+            <h5>
+                ⭐ Especiais
+            </h5>
+
+            <div>
+                ${especiais.join(" • ")}
+            </div>
+
+        </div>
+    `;
+    }
+
+    // ==========================
+    // FIGURINHAS COCA-COLA
+    // ==========================
+
+    let coca = [];
+
+    for (let i = 1; i <= 14; i++) {
+
+        const codigo =
+            "CC " +
+            String(i).padStart(2, "0");
+
+        const qtd =
+            Number(
+                localStorage.getItem(
+                    `${codigo}-rep`
+                )
+            ) || 0;
+
+        if (qtd > 0) {
+
+            coca.push(
+                `${codigo}${paraExpoente(qtd)}`
+            );
+        }
+    }
+
+    if (coca.length) {
+
+        html += `
+        <div class="mb-3">
+
+            <h5>
+                🥤 Coca-Cola
+            </h5>
+
+            <div>
+                ${coca.join(" • ")}
+            </div>
+
+        </div>
+    `;
+    }
     if (html === "") {
 
         html = `
@@ -868,7 +984,7 @@ function atualizarListaRepetidas() {
 
 const btnRepetidas =
     document.getElementById(
-        "btnRepetidas"
+        "menuRepetidas"
     );
 
 if (btnRepetidas) {
@@ -1595,7 +1711,7 @@ function atualizarEspeciais() {
     for (let i = 0; i <= 19; i++) {
 
         const codigo =
-            "FWC" +
+            "FWC " +
             String(i).padStart(2, "0");
 
         if (
@@ -1638,7 +1754,7 @@ function atualizarCocaCola() {
     for (let i = 1; i <= 14; i++) {
 
         const codigo =
-            "CC" +
+            "CC " +
             String(i).padStart(2, "0");
 
         if (
@@ -1712,6 +1828,149 @@ document.addEventListener(
 
 // ---
 
+function gerarTextoRepetidas() {
+
+    let texto =
+        "🔁 FIGURINHAS REPETIDAS\n\n";
+
+    Object.values(grupos)
+        .flat()
+        .forEach(selecao => {
+
+            let itens = [];
+
+            for (let i = 1; i <= 20; i++) {
+
+                const qtd =
+                    Number(
+                        localStorage.getItem(
+                            `${selecao}-${i}-rep`
+                        )
+                    ) || 0;
+
+                if (qtd > 0) {
+
+                    itens.push(
+                        `${String(i).padStart(2, '0')} (+${qtd})`
+                    );
+                }
+            }
+
+            if (itens.length) {
+
+                texto +=
+                    `${selecao}\n`;
+
+                texto +=
+                    itens.join(" • ");
+
+                texto +=
+                    "\n\n";
+            }
+        });
+
+    // Especiais
+
+    let especiais = [];
+
+    for (let i = 0; i <= 19; i++) {
+
+        const codigo =
+            "FWC " +
+            String(i).padStart(2, "0");
+
+        const qtd =
+            Number(
+                localStorage.getItem(
+                    `${codigo}-rep`
+                )
+            ) || 0;
+
+        if (qtd > 0) {
+
+            especiais.push(
+                `${codigo} (+${qtd})`
+            );
+        }
+    }
+
+    if (especiais.length) {
+
+        texto +=
+            "⭐ Especiais\n";
+
+        texto +=
+            especiais.join(" • ");
+
+        texto +=
+            "\n\n";
+    }
+
+    // Coca-Cola
+
+    let coca = [];
+
+    for (let i = 1; i <= 14; i++) {
+
+        const codigo =
+            "CC " +
+            String(i).padStart(2, "0");
+
+        const qtd =
+            Number(
+                localStorage.getItem(
+                    `${codigo}-rep`
+                )
+            ) || 0;
+
+        if (qtd > 0) {
+
+            coca.push(
+                `${codigo} (+${qtd})`
+            );
+        }
+    }
+
+    if (coca.length) {
+
+        texto +=
+            "🥤 Coca-Cola\n";
+
+        texto +=
+            coca.join(" • ");
+
+        texto +=
+            "\n";
+    }
+
+    return texto;
+}
+
+// ---
+
+const btnCopiarRepetidas =
+    document.getElementById(
+        "btnCopiarRepetidas"
+    );
+
+if (btnCopiarRepetidas) {
+
+    btnCopiarRepetidas.addEventListener(
+        "click",
+        async () => {
+
+            await navigator.clipboard.writeText(
+                gerarTextoRepetidas()
+            );
+
+            alert(
+                "Lista de repetidas copiada!"
+            );
+        }
+    );
+}
+
+// ---
 
 carregarSelecoesCombo();
 
