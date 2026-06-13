@@ -1,0 +1,16 @@
+name: Deploy Homolog
+
+on:
+  push:
+    branches:
+      - homolog
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Echo
+        run: echo "Deploy homolog funcionando"
