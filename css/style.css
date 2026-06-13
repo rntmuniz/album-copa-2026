@@ -1093,70 +1093,6 @@ body{
     }
 }
 
-/* @media (max-width:768px){
-
-    .painelResumo{
-
-        grid-template-columns:
-            repeat(2,1fr);
-
-        gap:8px;
-
-        margin:10px auto 15px auto;
-    }
-
-    .cardResumo{
-
-        padding:10px;
-
-        border-radius:12px;
-    }
-
-    .tituloResumo{
-
-        font-size:.60rem;
-
-        letter-spacing:0;
-    }
-
-    .valorResumo{
-
-        font-size:1.35rem;
-
-        font-weight:900;
-    }
-
-    /* .tituloResumo{
-
-        font-size:.65rem;
-    }
-
-    .valorResumo{
-
-        font-size:1.2rem;
-
-        margin-top:2px;
-    } 
-
-}  */
-
-/* .cardResumo{
-
-    background:#fff;
-
-    border-radius:18px;
-
-    padding:18px;
-
-    text-align:center;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.12);
-
-    border-top:
-        4px solid #198754;
-} */
-
 .cardResumo{
 
     background:#fff;
@@ -1172,8 +1108,8 @@ body{
     box-shadow:
         0 4px 15px rgba(0,0,0,.12);
 
-    /* border-top:
-        4px solid #198754; */
+    border-top:
+        4px solid #198754;
 }
 
 .tituloResumo{
