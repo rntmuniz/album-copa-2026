@@ -1,9 +1,14 @@
-name: Build Produção
+name: Deploy Produção
 
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -12,5 +17,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build
-        run: echo "Build produção OK"
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy
+        uses: actions/deploy-pages@v4
