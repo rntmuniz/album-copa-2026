@@ -1066,32 +1066,32 @@ body{
 
     .painelResumo{
 
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: repeat(4,1fr);
         gap:6px;
         margin:8px auto 12px auto;
     }
 
     .cardResumo{
 
-        padding:6px;              /* ↓ reduz altura */
+        padding:6px;
         border-radius:10px;
+        text-align:center;
     }
 
     .tituloResumo{
 
-        font-size:.55rem;
-        letter-spacing:0;
+        font-size:.45rem;
         margin-bottom:2px;
+        line-height:1;
     }
 
     .valorResumo{
 
-        font-size:1.05rem;       /* ↓ ESSA é a principal mudança */
+        font-size:.95rem;
         font-weight:800;
-        line-height:1.1;         /* evita “crescer” verticalmente */
+        line-height:1;
     }
 }
-
 
 /* @media (max-width:768px){
 
@@ -1136,9 +1136,9 @@ body{
         font-size:1.2rem;
 
         margin-top:2px;
-    } */
+    } 
 
-} */
+}  */
 
 /* .cardResumo{
 
