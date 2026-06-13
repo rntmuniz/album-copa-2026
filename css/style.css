@@ -1199,3 +1199,9 @@ body{
 
     color:#212529;
 }
+
+@media (max-width:768px){
+    .painelResumo{
+        background: red !important;
+    }
+}
