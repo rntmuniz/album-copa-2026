@@ -417,7 +417,7 @@ for (const grupo in grupos) {
 
     bloco.className = "grupo";
 
-    bloco.innerHTML = `<h2>Grupo ${grupo}</h2>`;
+    bloco.innerHTML = `<h2>GRUPO ${grupo}</h2>`;
 
     grupos[grupo].forEach(selecao => {
 
@@ -546,44 +546,70 @@ function atualizarTotal() {
     const percentualFaltante =
         100 - percentualAlbum;
 
+const totalRepetidas =
+    calcularTotalRepetidas();
+
+document.getElementById(
+    "totalRepetidas"
+).innerText =
+    totalRepetidas;
+
+    // document.getElementById(
+    //     "percentualAlbum"
+    // ).innerText =
+    //     percentualAlbum + "%";
+
+    // document.getElementById(
+    //     "percentualFaltante"
+    // ).innerText =
+    //     percentualFaltante + "%";
+
+    // document.getElementById(
+    //     "barraAlbum"
+    // ).style.width =
+    //     percentualAlbum + "%";
+
+    // document.getElementById(
+    //     "barraFaltantes"
+    // ).style.width =
+    //     percentualFaltante + "%";
+
+    // document.getElementById("total")
+    //     .innerText = total;
+
+    // document.getElementById("faltantes")
+    //     .innerText =
+    //     TOTAL_FIGURINHAS - total;
 
     document.getElementById(
         "percentualAlbum"
     ).innerText =
         percentualAlbum + "%";
 
-    document.getElementById(
-        "percentualFaltante"
-    ).innerText =
-        percentualFaltante + "%";
+    // document.getElementById(
+    //     "percentualFaltante"
+    // ).innerText =
+    //     percentualFaltante + "%";
 
-    document.getElementById(
-        "barraAlbum"
-    ).style.width =
-        percentualAlbum + "%";
+ document.getElementById(
+    "totalColadas"
+).innerText = total;
 
-    document.getElementById(
-        "barraFaltantes"
-    ).style.width =
-        percentualFaltante + "%";
+document.getElementById(
+    "totalFaltantes"
+).innerText =
+    TOTAL_FIGURINHAS - total;
 
-    document.getElementById("total")
-        .innerText = total;
+// document.getElementById(
+//     "totalPercentual"
+// ).innerText =
+//     percentualAlbum + "%";
 
-    document.getElementById("faltantes")
-        .innerText =
-        TOTAL_FIGURINHAS - total;
-
-    document.getElementById(
-        "percentualAlbum"
-    ).innerText =
-        percentualAlbum + "%";
-
-    document.getElementById(
-        "percentualFaltante"
-    ).innerText =
-        percentualFaltante + "%";
-
+// document.getElementById(
+//     "totalRestante"
+// ).innerText =
+//     percentualFaltante + "%";
+ 
     atualizarRanking();
 
     atualizarEspeciais();
@@ -1968,6 +1994,31 @@ if (btnCopiarRepetidas) {
             );
         }
     );
+}
+
+// ---
+
+function calcularTotalRepetidas() {
+
+    let total = 0;
+
+    for (let i = 0; i < localStorage.length; i++) {
+
+        const chave =
+            localStorage.key(i);
+
+        if (chave.endsWith("-rep")) {
+
+            total +=
+                Number(
+                    localStorage.getItem(
+                        chave
+                    )
+                ) || 0;
+        }
+    }
+
+    return total;
 }
 
 // ---

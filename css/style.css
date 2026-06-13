@@ -75,7 +75,22 @@ body {
     color: var(--amarelo);
 }
 
-.grupo-card {
+.grupo-card,
+.selecao{
+
+    background:#ffffff;
+
+    border:none;
+
+    border-radius:16px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.12);
+
+    transition:.2s;
+}
+
+/* .grupo-card {
 
     border: none;
 
@@ -86,7 +101,7 @@ body {
     margin-bottom: 25px;
 
     animation: fadeIn .3s ease;
-}
+} */
 
 .grupo {
 
@@ -957,7 +972,7 @@ body {
 
     font-family:'Changa One', cursive;
 
-    font-size:4rem;
+    font-size:3.5rem;
 
     letter-spacing:2px;
 
@@ -973,4 +988,129 @@ body {
 
         font-size:2rem;
     }
+}
+
+/* --- */
+
+body{
+
+    background:
+        linear-gradient(
+            180deg,
+            #1b5e20,
+            #0d3b26
+        );
+
+    min-height:100vh;
+}
+
+.banner-topo{
+
+    max-width:1100px;
+
+    margin:15px auto 25px auto;
+
+    padding:0;
+}
+
+.banner-topo img{
+
+    width:100%;
+
+    height:auto;
+
+    display:block;
+
+    border-radius:18px;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.25);
+}
+
+@media (max-width:768px){
+
+    .banner-topo{
+
+        margin:10px auto 15px auto;
+    }
+
+    .banner-topo img{
+
+        border-radius:12px;
+    }
+}
+
+.painelResumo{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,
+            minmax(180px,1fr));
+
+    gap:15px;
+
+    margin:20px auto 25px auto;
+
+    max-width:1100px;
+}
+
+/* .cardResumo{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    text-align:center;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.12);
+
+    border-top:
+        4px solid #198754;
+} */
+
+.cardResumo{
+
+    background:#fff;
+
+    border:2px solid #d4af37;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    text-align:center;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.12);
+
+    border-top:
+        4px solid #198754;
+}
+
+.tituloResumo{
+
+    color:#198754;
+
+    font-size:.9rem;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+}
+
+.valorResumo{
+
+    margin-top:8px;
+
+    font-size:2rem;
+
+    font-weight:900;
+
+    color:#212529;
 }
