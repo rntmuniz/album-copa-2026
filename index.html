@@ -36,77 +36,92 @@
 
 <body>
 
-<div class="banner-topo">
+    <div class="banner-topo">
 
-    <img
-        src="img/banner-topo.png"
-        alt="Álbum Copa do Mundo 2026">
+        <img src="img/banner-topo.png" alt="Álbum Copa do Mundo 2026">
 
-</div>
+    </div>
 
-<div class="painelResumo">
+    <div class="painelResumo">
 
-    <div class="cardResumo">
+        <div class="cardResumo">
 
-        <div class="tituloResumo">
-            ✅ Coladas
+            <div class="tituloResumo">
+                ✅ Coladas
+            </div>
+
+            <div id="totalColadas" class="valorResumo">
+
+                0
+
+            </div>
+
         </div>
 
-        <div id="totalColadas"
-             class="valorResumo">
+        <div class="cardResumo">
 
-            0
+            <div class="tituloResumo">
+                📌 Faltantes
+            </div>
+
+            <div id="totalFaltantes" class="valorResumo">
+
+                0
+
+            </div>
+
+        </div>
+
+        <div class="cardResumo cardProgresso">
+
+            <div class="tituloResumo">
+                📊 Progresso
+            </div>
+
+            <div id="percentualAlbum" class="valorResumo">
+
+                0%
+
+            </div>
+
+        </div>
+
+        <div class="cardResumo">
+
+            <div class="tituloResumo">
+                🔁 Repetidas
+            </div>
+
+            <div id="totalRepetidas" class="valorResumo">
+
+                0
+
+            </div>
+
+        </div>
+
+        <div class="progressoResumo">
+
+            <div class="progressoCabecalho">
+
+                <div class="tituloResumo">
+                    📊 Progresso
+                </div>
+                <span id="percentualAlbumTexto">0%</span>
+
+            </div>
+
+            <div class="barraProgresso">
+
+                <div id="barraPercentual" class="barraPreenchida">
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
-
-    <div class="cardResumo">
-
-        <div class="tituloResumo">
-            📌 Faltantes
-        </div>
-
-        <div id="totalFaltantes"
-             class="valorResumo">
-
-            0
-
-        </div>
-
-    </div>
-
-    <div class="cardResumo">
-
-        <div class="tituloResumo">
-            📊 Progresso
-        </div>
-
-        <div id="percentualAlbum"
-             class="valorResumo">
-
-            0%
-
-        </div>
-
-    </div>
-
-    <div class="cardResumo">
-
-        <div class="tituloResumo">
-            🔁 Repetidas
-        </div>
-
-        <div id="totalRepetidas"
-             class="valorResumo">
-
-            0
-
-        </div>
-
-    </div>
-
-</div>
 
     <button id="btnModoEdicao" class="btnModoEdicaoFlutuante" title="Ativar edição">
 
@@ -133,7 +148,13 @@
             </button>
 
             <button id="menuLimpeza">
-                🗑️ Limpeza
+                💾 Backup 🗑️
+            </button>
+
+            <button id="menuAjuda" class="btn btn-outline-secondary">
+
+                ❓ Como usar
+
             </button>
 
         </div>
@@ -151,71 +172,6 @@
         </button>
 
         <div class="container py-4">
-
-            <!-- <div class="row mb-4 g-3">
-
-                <div class="col-md-6">
-
-                    <div class="card resumo-card">
-
-                        <div class="card-body text-center">
-
-                            <i class="fa-solid fa-check-circle icone-verde"></i>
-
-                            <h3 id="total">0</h3>
-
-                            <span>Figurinhas Coladas</span>
-
-                            <div class="barraResumo">
-
-                                <div id="barraAlbum" class="barraResumoInterna">
-                                </div>
-
-                            </div>
-
-                            <small id="percentualAlbum">
-
-                                0%
-
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-6">
-
-                    <div class="card resumo-card">
-
-                        <div class="card-body text-center">
-
-                            <i class="fa-solid fa-list icone-amarelo"></i>
-
-                            <h3 id="faltantes">980</h3>
-
-                            <span>Figurinhas Faltantes</span>
-
-                            <div class="barraResumo">
-
-                                <div id="barraFaltantes" class="barraResumoInterna barraFaltante">
-                                </div>
-
-                            </div>
-
-                            <small id="percentualFaltante">
-
-                                100%
-
-                            </small>
-
-                        </div>
-                    </div>
-
-                </div>
-
-            </div> -->
 
             <div class="row mb-4">
 
@@ -416,21 +372,44 @@
                             </button>
 
                         </div>
+                        <div class="mb-3">
 
-                        <pre id="listaTrocas"></pre>
+                            <input type="text" id="pesquisaTrocas" class="form-control"
+                                placeholder="🔍 Pesquisar seleção ou figurinha">
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <div class="form-check form-check-inline">
+
+                                <input class="form-check-input" type="checkbox" id="filtroTenho" checked>
+
+                                <label class="form-check-label" for="filtroTenho">
+
+                                    Tenho para Trocar
+
+                                </label>
+
+                            </div>
+
+                            <div class="form-check form-check-inline">
+
+                                <input class="form-check-input" type="checkbox" id="filtroProcuro" checked>
+
+                                <label class="form-check-label" for="filtroProcuro">
+
+                                    Procuro
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                        <div id="listaTrocas"></div>
 
                     </div>
-
-                    <!-- <div class="modal-body">
-
-                        <pre id="listaTrocas"></pre>
-
-                        <button id="copiarTrocas" class="btn btn-success">
-
-                            Copiar Lista
-                        </button>
-
-                    </div> -->
 
                 </div>
 
@@ -556,12 +535,67 @@
 
         </div>
 
+        <div class="modal fade" id="modalBoasVindas" tabindex="-1">
+
+            <div class="modal-dialog modal-dialog-centered">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h5 class="modal-title  w-100 text-center">
+                            ⚽ Bem-vindo ao Álbum da Copa 2026
+                        </h5>
+
+                    </div>
+
+                    <div class="modal-body">
+
+                        <p>
+                            Este álbum permite controlar suas figurinhas de forma simples.
+                        </p>
+
+                        <ul>
+                            <li>🔒 Clique no cadeado para habilitar a edição.</li>
+                            <li>✅ Toque em uma figurinha para marcá-la como colada.</li>
+                            <li>🔁 Clique novamente para controlar repetidas.</li>
+                            <li>📋 Use "Lista de Trocas" para compartilhar suas faltantes e repetidas.</li>
+                            <li>🔍 Use a busca para localizar uma seleção rapidamente.</li>
+                            <li>📊 Acompanhe o progresso geral e por seleção.</li>
+                            <li>💾 Faça backup/reset do seu album.</li>
+                        </ul>
+
+                    </div>
+
+<div class="modal-footer justify-content-center flex-column">
+
+    <button
+        type="button"
+        class="btn btn-success"
+        data-bs-dismiss="modal">
+
+        Começar
+
+    </button>
+
+    <small class="text-muted">
+
+        © 2026 Renato Muniz
+
+    </small>
+
+</div>
+                </div>
+
+            </div>
+
+        </div>
+
         <script src="js/script.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-
-        <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+        <div class="toast-container position-fixed top-50 start-50 translate-middle p-3">
 
             <div id="toastBloqueado" class="toast text-bg-warning border-0" role="alert">
 

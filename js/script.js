@@ -9,7 +9,7 @@ const grupos = {
     "B": ["Canadá", "Bósnia e Herzegovina", "Catar", "Suíça"],
     "C": ["Brasil", "Marrocos", "Haiti", "Escócia"],
     "D": ["Estados Unidos", "Paraguai", "Austrália", "Turquia"],
-    "E": ["Alemanha", "Curaçau", "Costa do Marfim", "Equador"],
+    "E": ["Alemanha", "Curaçao", "Costa do Marfim", "Equador"],
     "F": ["Holanda", "Japão", "Suécia", "Tunísia"],
     "G": ["Bélgica", "Egito", "Irã", "Nova Zelândia"],
     "H": ["Espanha", "Cabo Verde", "Arábia Saudita", "Uruguai"],
@@ -65,7 +65,7 @@ const bandeiras = {
     "Turquia": "tr",
 
     "Alemanha": "de",
-    "Curaçau": "cw",
+    "Curaçao": "cw",
     "Costa do Marfim": "ci",
     "Equador": "ec",
 
@@ -174,12 +174,6 @@ function criarFigurinha(id, texto) {
             document.getElementById(
                 "popUpRepetidas"
             );
-
-        // menu.style.left =
-        //     e.pageX + "px";
-
-        // menu.style.top =
-        //     e.pageY + "px";
 
         menu.style.left = "50%";
 
@@ -546,70 +540,36 @@ function atualizarTotal() {
     const percentualFaltante =
         100 - percentualAlbum;
 
-const totalRepetidas =
-    calcularTotalRepetidas();
+    const totalRepetidas =
+        calcularTotalRepetidas();
 
-document.getElementById(
-    "totalRepetidas"
-).innerText =
-    totalRepetidas;
-
-    // document.getElementById(
-    //     "percentualAlbum"
-    // ).innerText =
-    //     percentualAlbum + "%";
-
-    // document.getElementById(
-    //     "percentualFaltante"
-    // ).innerText =
-    //     percentualFaltante + "%";
-
-    // document.getElementById(
-    //     "barraAlbum"
-    // ).style.width =
-    //     percentualAlbum + "%";
-
-    // document.getElementById(
-    //     "barraFaltantes"
-    // ).style.width =
-    //     percentualFaltante + "%";
-
-    // document.getElementById("total")
-    //     .innerText = total;
-
-    // document.getElementById("faltantes")
-    //     .innerText =
-    //     TOTAL_FIGURINHAS - total;
+    document.getElementById(
+        "totalRepetidas"
+    ).innerText =
+        totalRepetidas;
 
     document.getElementById(
         "percentualAlbum"
     ).innerText =
         percentualAlbum + "%";
 
-    // document.getElementById(
-    //     "percentualFaltante"
-    // ).innerText =
-    //     percentualFaltante + "%";
+    document.getElementById(
+        "percentualAlbumTexto"
+    ).textContent = percentualAlbum + "%";
 
- document.getElementById(
-    "totalColadas"
-).innerText = total;
+    document.getElementById(
+        "barraPercentual"
+    ).style.width = percentualAlbum + "%";
 
-document.getElementById(
-    "totalFaltantes"
-).innerText =
-    TOTAL_FIGURINHAS - total;
+    document.getElementById(
+        "totalColadas"
+    ).innerText = total;
 
-// document.getElementById(
-//     "totalPercentual"
-// ).innerText =
-//     percentualAlbum + "%";
+    document.getElementById(
+        "totalFaltantes"
+    ).innerText =
+        TOTAL_FIGURINHAS - total;
 
-// document.getElementById(
-//     "totalRestante"
-// ).innerText =
-//     percentualFaltante + "%";
- 
     atualizarRanking();
 
     atualizarEspeciais();
@@ -630,9 +590,19 @@ if (busca) {
             .querySelectorAll(".selecao")
             .forEach(selecao => {
 
+                const titulo =
+                    selecao.querySelector("h3");
+
+                if (!titulo) {
+
+                    selecao.style.display =
+                        texto ? "none" : "";
+
+                    return;
+                }
+
                 const nome =
-                    selecao.querySelector("h3")
-                        .innerText
+                    titulo.textContent
                         .toLowerCase();
 
                 selecao.style.display =
@@ -640,29 +610,30 @@ if (busca) {
                         ? ""
                         : "none";
             });
+
+        document
+            .querySelectorAll(".grupo")
+            .forEach(grupo => {
+
+                const possuiSelecaoVisivel =
+                    Array.from(
+                        grupo.querySelectorAll(".selecao")
+                    ).some(
+                        selecao =>
+                            selecao.style.display !== "none"
+                    );
+
+                grupo.style.display =
+                    possuiSelecaoVisivel
+                        ? ""
+                        : "none";
+            });
+
     });
+
 }
 
-if (localStorage.getItem("tema") === "dark") {
-    document.body.classList.add("dark");
-}
-
-// const btnTema = document.getElementById("tema");
-
-// if (btnTema) {
-
-//     btnTema.addEventListener("click", () => {
-
-//         document.body.classList.toggle("dark");
-
-//         localStorage.setItem(
-//             "tema",
-//             document.body.classList.contains("dark")
-//                 ? "dark"
-//                 : "light"
-//         );
-//     });
-// }
+// ---
 
 function atualizarRanking() {
 
@@ -748,6 +719,8 @@ function atualizarRanking() {
     atualizarContadoresSelecoes();
 }
 
+// ---
+
 function atualizarEstatisticas(dados) {
 
     const div =
@@ -832,6 +805,7 @@ if (btnEstatisticas) {
         });
 }
 
+// ---
 
 function atualizarListaRepetidas() {
 
@@ -888,22 +862,8 @@ function atualizarListaRepetidas() {
 
     </div>
 `;
-
-            // if (itens.length) {
-
-            //     html += `
-            //         <div class="mb-3">
-
-            //             <h5>${selecao}</h5>
-
-            //             <div>
-            //                 ${itens.join(" • ")}
-            //             </div>
-
-            //         </div>
-            //     `;
-            // }
         });
+
 
     // ==========================
     // FIGURINHAS ESPECIAIS
@@ -1033,12 +993,38 @@ if (btnRepetidas) {
     );
 }
 
+// ---
+
+const btnAjuda =
+    document.getElementById(
+        "menuAjuda"
+    );
+
+if (btnAjuda) {
+
+    btnAjuda.addEventListener(
+        "click",
+        () => {
+
+            new bootstrap.Modal(
+                document.getElementById(
+                    "modalBoasVindas"
+                )
+            ).show();
+
+        }
+    );
+}
+
+// ---
+
 function gerarListaTrocas() {
 
     let texto = "🤝 TENHO PARA TROCAR\n\n";
 
     Object.values(grupos)
         .flat()
+        .sort((a, b) => a.localeCompare(b))
         .forEach(selecao => {
 
             let itens = [];
@@ -1063,10 +1049,20 @@ function gerarListaTrocas() {
             if (itens.length) {
 
                 texto +=
-                    `${selecao}\n`;
+                    `${selecao.toUpperCase()}\n`;
 
-                texto +=
-                    itens.join("\n");
+                const primeiraLinha =
+                    itens.slice(0, 10).join("   ");
+
+                const segundaLinha =
+                    itens.slice(10).join("   ");
+
+                texto += primeiraLinha;
+
+                if (segundaLinha) {
+
+                    texto += "\n" + segundaLinha;
+                }
 
                 texto += "\n\n";
             }
@@ -1077,6 +1073,7 @@ function gerarListaTrocas() {
 
     Object.values(grupos)
         .flat()
+        .sort((a, b) => a.localeCompare(b))
         .forEach(selecao => {
 
             let faltantes = [];
@@ -1099,10 +1096,20 @@ function gerarListaTrocas() {
             if (faltantes.length) {
 
                 texto +=
-                    `${selecao}\n`;
+                    `${selecao.toUpperCase()}\n`;
 
-                texto +=
-                    faltantes.join(" ");
+                const primeiraLinha =
+                    faltantes.slice(0, 10).join("   ");
+
+                const segundaLinha =
+                    faltantes.slice(10).join("   ");
+
+                texto += primeiraLinha;
+
+                if (segundaLinha) {
+
+                    texto += "\n" + segundaLinha;
+                }
 
                 texto += "\n\n";
             }
@@ -1110,6 +1117,206 @@ function gerarListaTrocas() {
 
     return texto;
 }
+
+// ---
+
+function gerarHtmlTrocas() {
+
+    let html = "";
+
+    const selecoes =
+        Object.values(grupos)
+            .flat()
+            .sort((a, b) =>
+                a.localeCompare(b)
+            );
+
+    html += `
+    <div class="tituloSecaoTroca">
+
+        🤝 TENHO PARA TROCAR
+
+    </div>
+`;
+
+    selecoes.forEach(selecao => {
+
+        let itens = [];
+
+        for (let i = 1; i <= 20; i++) {
+
+            const qtd =
+                Number(
+                    localStorage.getItem(
+                        `${selecao}-${i}-rep`
+                    )
+                ) || 0;
+
+            if (qtd > 0) {
+
+                itens.push(
+                    `${String(i)
+                        .padStart(2, '0')} (+${qtd})`
+                );
+            }
+        }
+
+        if (itens.length) {
+
+            html += `
+                <div
+                    class="blocoTroca tipoTenho">
+
+                    <div class="tituloTroca">
+
+                        ${selecao.toUpperCase()}
+
+                    </div>
+
+                    <div class="numerosTroca">
+
+                        ${itens.join(" • ")}
+
+                    </div>
+
+                </div>
+            `;
+        }
+    });
+
+    html += `
+    <div class="tituloSecaoTroca">
+
+        🔍 PROCURO
+
+    </div>
+`;
+
+    selecoes.forEach(selecao => {
+
+        let faltantes = [];
+
+        for (let i = 1; i <= 20; i++) {
+
+            if (
+                localStorage.getItem(
+                    `${selecao}-${i}`
+                ) !== "1"
+            ) {
+
+                faltantes.push(
+                    String(i)
+                        .padStart(2, '0')
+                );
+            }
+        }
+
+        if (faltantes.length) {
+
+            html += `
+                <div
+                    class="blocoTroca tipoProcuro">
+
+                    <div class="tituloTroca">
+
+                        ${selecao.toUpperCase()}
+
+                    </div>
+
+                    <div class="numerosTroca">
+
+                        ${faltantes.join(" • ")}
+
+                    </div>
+
+                </div>
+            `;
+        }
+    });
+
+    return html;
+}
+
+// ---
+
+function aplicarFiltroTrocas() {
+
+    const texto =
+        document
+            .getElementById(
+                "pesquisaTrocas"
+            )
+            .value
+            .toLowerCase();
+
+    const mostrarTenho =
+        document
+            .getElementById(
+                "filtroTenho"
+            )
+            .checked;
+
+    const mostrarProcuro =
+        document
+            .getElementById(
+                "filtroProcuro"
+            )
+            .checked;
+
+    document
+        .querySelectorAll(
+            ".blocoTroca"
+        )
+        .forEach(bloco => {
+
+            const ehTenho =
+                bloco.classList.contains(
+                    "tipoTenho"
+                );
+
+            const ehProcuro =
+                bloco.classList.contains(
+                    "tipoProcuro"
+                );
+
+            const atendeTipo =
+                (ehTenho && mostrarTenho)
+                ||
+                (ehProcuro && mostrarProcuro);
+
+            const atendeTexto =
+                bloco.textContent
+                    .toLowerCase()
+                    .includes(texto);
+
+            bloco.style.display =
+                atendeTipo &&
+                    atendeTexto
+                    ? ""
+                    : "none";
+        });
+}
+
+document
+    .getElementById(
+        "pesquisaTrocas"
+    )
+    .oninput =
+    aplicarFiltroTrocas;
+
+document
+    .getElementById(
+        "filtroTenho"
+    )
+    .onchange =
+    aplicarFiltroTrocas;
+
+document
+    .getElementById(
+        "filtroProcuro"
+    )
+    .onchange =
+    aplicarFiltroTrocas;
 
 // ---
 
@@ -1128,8 +1335,36 @@ if (btnTrocas) {
                 .getElementById(
                     "listaTrocas"
                 )
-                .textContent =
-                gerarListaTrocas();
+                .innerHTML =
+                gerarHtmlTrocas();
+
+            const campoPesquisa =
+                document.getElementById(
+                    "pesquisaTrocas"
+                );
+
+            campoPesquisa.value = "";
+
+            campoPesquisa.oninput = function () {
+
+                const filtro =
+                    this.value.toLowerCase();
+
+                document
+                    .querySelectorAll(
+                        ".blocoTroca"
+                    )
+                    .forEach(bloco => {
+
+                        bloco.style.display =
+                            bloco.textContent
+                                .toLowerCase()
+                                .includes(filtro)
+                                ? ""
+                                : "none";
+                    });
+            };
+
 
             new bootstrap.Modal(
                 document.getElementById(
@@ -1380,6 +1615,8 @@ if (btnTopo) {
     );
 }
 
+// ---
+
 const btnFinal =
     document.getElementById(
         "btnFinal"
@@ -1438,6 +1675,25 @@ function atualizarContadoresSelecoes() {
                 );
 
             if (div) {
+
+                const card =
+                    div.closest(".selecao");
+
+                if (card) {
+
+                    if (coladas === 20) {
+
+                        card.classList.add(
+                            "selecaoCompleta"
+                        );
+
+                    } else {
+
+                        card.classList.remove(
+                            "selecaoCompleta"
+                        );
+                    }
+                }
 
                 div.innerHTML = `
 
@@ -1764,11 +2020,17 @@ function atualizarEspeciais() {
 
         `${coladas} coladas • ${faltantes} faltantes`;
 
-    document.getElementById(
-        "barraEspeciais"
-    ).style.width =
+    const barra =
+        document.getElementById(
+            "barraEspeciais"
+        );
 
+    barra.style.width =
         percentual + "%";
+
+    barra.textContent =
+        percentual + "%";
+
 }
 
 // ---
@@ -1807,11 +2069,17 @@ function atualizarCocaCola() {
 
         `${coladas} coladas • ${faltantes} faltantes`;
 
-    document.getElementById(
-        "barraCocaCola"
-    ).style.width =
+    const barra =
+        document.getElementById(
+            "barraCocaCola"
+        );
 
+    barra.style.width =
         percentual + "%";
+
+    barra.textContent =
+        percentual + "%";
+
 }
 
 // ---
@@ -2020,6 +2288,33 @@ function calcularTotalRepetidas() {
 
     return total;
 }
+
+// ---
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const jaViuTutorial =
+            localStorage.getItem(
+                "tutorialAlbum2026"
+            );
+
+        if (!jaViuTutorial) {
+
+            new bootstrap.Modal(
+                document.getElementById(
+                    "modalBoasVindas"
+                )
+            ).show();
+
+            localStorage.setItem(
+                "tutorialAlbum2026",
+                "1"
+            );
+        }
+    }
+);
 
 // ---
 
